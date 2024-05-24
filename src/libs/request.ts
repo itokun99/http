@@ -20,17 +20,27 @@ export async function request<Res = unknown, Req = unknown>(
   requestOptions?: RequestApiOptions,
 ) {
   let opts = { ...defaultRequestApiOptions, ...requestOptions };
+  const contentType = getContentType(opts?.contentType);
+  let headers: HeadersInit = {};
+
+  if (contentType) {
+    headers["Content-Type"] = contentType;
+  }
+
+  if (opts.bearerToken && typeof opts.bearerToken === "string") {
+    headers["Authorization"] = `Bearer ${opts.bearerToken}`;
+  }
+
+  if (opts.headers) {
+    headers = {
+      ...headers,
+      ...opts.headers,
+    };
+  }
 
   const res: Response = await fetch(endpoint, {
     method,
-    headers: {
-      "Content-Type": getContentType(opts?.contentType),
-      ...(opts.bearerToken &&
-        typeof opts.bearerToken === "string" && {
-          Authorization: `Bearer ${opts.bearerToken}`,
-        }),
-      ...opts?.headers,
-    },
+    headers,
     ...(opts?.signal && { signal: opts.signal }),
     body: getBody(method, opts.contentType, requestBody) as RequestInit["body"],
   });
@@ -69,19 +79,18 @@ export const createRequest = async <Res, Req>(
   const initialOptions = await resolveRequestOptions(initialOpts);
   const requestOptions = await resolveRequestOptions(requestOpts);
 
-  return request<Res, Req>(
-    createEndpoint(
-      endpoint,
-      requestOptions?.path || initialOptions?.path || "",
-      {
-        ...initialOptions?.metaParams,
-        ...initialOptions?.params,
-        ...requestOptions?.metaParams,
-        ...requestOptions?.params,
-      },
-    ),
-    method,
-    body,
-    { ...initialOptions, ...requestOptions },
+  const ep = createEndpoint(
+    endpoint,
+    requestOptions?.path || initialOptions?.path || "",
+    {
+      ...initialOptions?.metaParams,
+      ...initialOptions?.params,
+      ...requestOptions?.metaParams,
+      ...requestOptions?.params,
+    },
   );
+
+  const opts = { ...initialOptions, ...requestOptions };
+
+  return request<Res, Req>(ep, method, body, opts);
 };

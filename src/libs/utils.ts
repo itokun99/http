@@ -2,12 +2,15 @@ import { Method, Option, ParamType, RequestApiOptions } from "./types";
 
 export const getContentType = (t?: string) => {
   switch (t) {
-    case "form-data":
-      return "multipart/form-data";
+    // WARNING: DEPRECATED! please read the answer see https://stackoverflow.com/a/61321681/178850
+    // case "form-data":
+    //   return "multipart/form-data";
     case "url-enconded":
       return "application/x-www-form-urlencoded";
-    default:
+    case "json":
       return "application/json";
+    default:
+      return undefined;
   }
 };
 
