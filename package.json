@@ -1,6 +1,6 @@
 {
   "name": "@hudoro/http",
-  "version": "0.0.1-beta.5",
+  "version": "0.0.1-beta.6",
   "description": "Client Http for HSD App",
   "author": "Prawito Hudoro",
   "main": "dist/index.umd.js",
