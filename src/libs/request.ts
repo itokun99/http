@@ -47,6 +47,10 @@ export async function request<Res = unknown, Req = unknown>(
 
   let result;
 
+  if (!res.ok) {
+    throw (await res.json()) as Res;
+  }
+
   switch (opts.responseContentType) {
     case "json":
       result = await res.json();
@@ -60,10 +64,6 @@ export async function request<Res = unknown, Req = unknown>(
     default:
       result = await res.json();
       break;
-  }
-
-  if (!res.ok) {
-    throw (await res.json()) as Res;
   }
 
   return result as Res;

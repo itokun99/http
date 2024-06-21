@@ -20,15 +20,15 @@
     "build": "vite build --config vite.config.ts"
   },
   "devDependencies": {
-    "@types/node": "^20.12.12",
+    "@types/node": "^20.14.7",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "path": "^0.12.7",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "typescript": "^5.4.5",
+    "typescript": "^5.5.2",
     "url": "^0.11.3",
-    "vite": "^5.2.11",
+    "vite": "^5.3.1",
     "vite-plugin-dts": "^3.9.1"
   }
 }
