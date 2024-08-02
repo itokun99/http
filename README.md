@@ -1,4 +1,4 @@
-````markdown
+
 # @itokun99/http
 
 A utility for making API requests easily and efficiently.
@@ -10,7 +10,6 @@ To install this package, run the following command:
 ```bash
 npm install @itokun99/http
 ```
-````
 
 ## Usage
 
