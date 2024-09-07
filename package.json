@@ -1,8 +1,16 @@
 {
   "name": "@itokun99/http",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Fetch util for better fetching api",
-  "author": "Indrawan Lisanto",
+  "homepage": "http://github.com/itokun99/http",
+  "author": {
+    "name": "Indrawan Lisanto",
+    "url": "https://github.com/itokun99"
+  },
+  "repository": {
+    "url": "https://github.com/itokun99/http",
+    "type": "git"
+  },
   "main": "dist/index.umd.js",
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
@@ -15,25 +23,28 @@
   },
   "keywords": [
     "react",
+    "react-native",
     "javascript",
     "fetching",
-    "fetch"
+    "fetch",
+    "xhr",
+    "api-tools"
   ],
-  "license": "ISC",
+  "license": "MIT",
   "scripts": {
     "dev": "vite --config vite.config.ts --port 3000",
     "build": "vite build --config vite.config.ts"
   },
   "devDependencies": {
-    "@types/node": "^20.14.8",
-    "@types/react": "^18.3.3",
+    "@types/node": "^20.16.5",
+    "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
     "path": "^0.12.7",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "typescript": "^5.5.2",
-    "url": "^0.11.3",
-    "vite": "^5.3.1",
+    "typescript": "^5.5.4",
+    "url": "^0.11.4",
+    "vite": "^5.4.3",
     "vite-plugin-dts": "^3.9.1"
   }
 }
